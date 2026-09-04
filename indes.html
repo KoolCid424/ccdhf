@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classroom Cloud | DHF Industries</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%2300aaff'/%3E%3C/svg%3E">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    background: #07090d;
+    color: #f5f7fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(0,170,255,.10), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(0,229,154,.055), transparent 25%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.page {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+nav {
+    height: 88px;
+    padding: 0 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo-dot {
+    color: #00aaff;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #8e98a8;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00e59a;
+    box-shadow: 0 0 14px rgba(0,229,154,.55);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.panel {
+    width: min(760px, 92vw);
+    text-align: center;
+}
+
+.eyebrow {
+    color: #00aaff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(58px, 10vw, 118px);
+    line-height: .86;
+    letter-spacing: -6px;
+    font-weight: 800;
+}
+
+h1 span {
+    display: block;
+}
+
+h1 .accent {
+    color: #00aaff;
+}
+
+.description {
+    max-width: 520px;
+    margin: 30px auto 34px;
+    color: #8993a3;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 205px;
+    padding: 16px 25px;
+    border-radius: 9px;
+    background: #00aaff;
+    color: #031019;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    box-shadow: 0 10px 40px rgba(0,170,255,.16);
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+    background: #18b5ff;
+    box-shadow: 0 14px 45px rgba(0,170,255,.25);
+}
+
+.download-icon {
+    font-size: 16px;
+}
+
+.file-info {
+    margin-top: 17px;
+    color: #596272;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.quick-links {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+    color: #505968;
+    font-size: 10px;
+}
+
+.quick-links a {
+    color: #667080;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.quick-links a:hover {
+    color: #00aaff;
+}
+
+.separator {
+    color: #00aaff;
+}
+
+/* Instructions */
+
+.instructions {
+    display: none;
+    width: min(760px, 92vw);
+}
+
+.instructions.show {
+    display: block;
+    animation: reveal .55s ease forwards;
+}
+
+.download-panel.hide {
+    display: none;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.instruction-heading {
+    margin-bottom: 32px;
+}
+
+.instruction-heading .eyebrow {
+    margin-bottom: 16px;
+}
+
+.instruction-heading h2 {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 60px);
+    letter-spacing: -3px;
+    line-height: .95;
+}
+
+.instruction-heading h2 span {
+    color: #00aaff;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-bottom: 28px;
+}
+
+.step {
+    text-align: left;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,.07);
+    background: rgba(255,255,255,.025);
+    border-radius: 10px;
+}
+
+.step-number {
+    color: #00aaff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 13px;
+}
+
+.step h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.step p {
+    margin: 0;
+    color: #747e8d;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.note {
+    padding: 15px 18px;
+    border-left: 2px solid #00aaff;
+    background: rgba(0,170,255,.035);
+    color: #737d8c;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.note strong {
+    color: #dce3eb;
+}
+
+footer {
+    height: 65px;
+    padding: 0 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444d5b;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+}
+
+@media (max-width: 650px) {
+    nav {
+        height: 70px;
+        padding: 0 7vw;
+    }
+
+    .status {
+        display: none;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .description {
+        font-size: 13px;
+        margin: 24px auto 28px;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .step {
+        padding: 14px 16px;
+    }
+
+    .step p {
+        font-size: 10px;
+    }
+
+    .instruction-heading {
+        margin-bottom: 18px;
+    }
+
+    .instruction-heading h2 {
+        letter-spacing: -2px;
+    }
+
+    footer {
+        height: 48px;
+    }
+}
+
+@media (max-height: 650px) {
+    nav {
+        height: 65px;
+    }
+
+    .description {
+        margin: 18px auto 20px;
+    }
+
+    footer {
+        height: 45px;
+    }
+
+    .steps {
+        margin-bottom: 15px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+```
+<nav>
+    <a class="logo" href="https://dhfindustries.online" aria-label="DHF Industries home">
+        DHF<span class="logo-dot">.</span>
+    </a>
+
+    <div class="status">
+        <span class="status-dot"></span>
+        Classroom Cloud
+    </div>
+</nav>
+
+<main>
+
+    <!-- DOWNLOAD SCREEN -->
+    <section class="panel download-panel" id="downloadPanel">
+
+        <div class="eyebrow">DHF Industries / Classroom Cloud</div>
+
+        <h1>
+            CLASSROOM
+            <span class="accent">CLOUD.</span>
+        </h1>
+
+        <p class="description">
+            Classroom Cloud V1 is ready to go.
+            Download the Windows application below to begin.
+        </p>
+
+        <a
+            class="download-button"
+            href="ClassroomCloud-V1.exe"
+            download
+            onclick="showInstructions()"
+        >
+            <span class="download-icon">↓</span>
+            DOWNLOAD V1
+        </a>
+
+        <div class="file-info">
+            CLASSROOMCLOUD-V1.EXE &nbsp; • &nbsp; WINDOWS
+        </div>
+
+        <div class="quick-links">
+            <a href="https://dhfindustries.online">DHF Industries</a>
+            <span class="separator">•</span>
+            <a href="https://conceptx.dhfindustries.online">Concept X</a>
+        </div>
+
+    </section>
+
+
+    <!-- INSTRUCTIONS SCREEN -->
+    <section class="instructions" id="instructionsPanel">
+
+        <div class="instruction-heading">
+            <div class="eyebrow">Classroom Cloud / V1</div>
+
+            <h2>
+                YOU'RE
+                <span>READY.</span>
+            </h2>
+        </div>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-number">01 / DOWNLOAD</div>
+                <h3>Open the file</h3>
+                <p>
+                    Find ClassroomCloud-V1.exe in your Downloads folder
+                    and open it.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">02 / LAUNCH</div>
+                <h3>Start the application</h3>
+                <p>
+                    If Windows asks for permission to run the application,
+                    review the prompt and continue if you trust the file.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">03 / SCAN</div>
+                <h3>Click Start Scanning</h3>
+                <p>
+                    Once Classroom Cloud opens, click
+                    <strong>Start Scanning</strong> to begin.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="note">
+            <strong>Once scanning starts:</strong>
+            keep an eye on the log at the bottom of the application.
+            It will show you what Classroom Cloud is doing as the scan progresses.
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    DHF INDUSTRIES &nbsp; • &nbsp; CLASSROOM CLOUD V1
+</footer>
+```
+
+</div>
+
+<script>
+function showInstructions() {
+
+    setTimeout(function() {
+
+        document
+            .getElementById("downloadPanel")
+            .classList.add("hide");
+
+        document
+            .getElementById("instructionsPanel")
+            .classList.add("show");
+
+    }, 700);
+
+}
+</script>
+
+</body>
+</html>
