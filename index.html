@@ -1,761 +1,654 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classroom Cloud | DHF Industries</title>
+  <title>Classroom Cloud | DHF Industries</title>
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%2300aaff'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%2300aaff'/%3E%3C/svg%3E">
 
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-}
-
-body {
-    background: #07090d;
-    color: #f5f7fa;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* BACKGROUND GLOW */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(0,170,255,.10),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(0,229,154,.055),
-            transparent 25%
-        );
-}
-
-/* BACKGROUND GRID */
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-
-    opacity: .18;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.035) 1px,
-            transparent 1px
-        );
-
-    background-size: 42px 42px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 85%
-        );
-}
-
-/* PAGE */
-
-.page {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    z-index: 1;
-}
-
-/* NAVIGATION */
-
-nav {
-    height: 88px;
-
-    padding: 0 6vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    color: white;
-    text-decoration: none;
-
-    font-size: 21px;
-    font-weight: 800;
-
-    letter-spacing: -1px;
-}
-
-.logo-dot {
-    color: #00aaff;
-}
-
-/* STATUS */
-
-.status {
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-
-    color: #8e98a8;
-
-    font-size: 11px;
-
-    letter-spacing: 1.4px;
-
-    text-transform: uppercase;
-}
-
-.status-dot {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #00e59a;
-
-    box-shadow:
-        0 0 14px rgba(0,229,154,.55);
-}
-
-/* MAIN */
-
-main {
-    flex: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-}
-
-/* DOWNLOAD PANEL */
-
-.panel {
-    width: min(760px, 92vw);
-
-    text-align: center;
-}
-
-.eyebrow {
-    color: #00aaff;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 22px;
-}
-
-h1 {
-    margin: 0;
-
-    font-size: clamp(58px, 10vw, 118px);
-
-    line-height: .86;
-
-    letter-spacing: -6px;
-
-    font-weight: 800;
-}
-
-h1 span {
-    display: block;
-}
-
-h1 .accent {
-    color: #00aaff;
-}
-
-/* DESCRIPTION */
-
-.description {
-    max-width: 520px;
-
-    margin: 30px auto 34px;
-
-    color: #8993a3;
-
-    font-size: 15px;
-
-    line-height: 1.7;
-}
-
-/* DOWNLOAD BUTTON */
-
-.download-button {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-
-    min-width: 205px;
-
-    padding: 16px 25px;
-
-    border-radius: 9px;
-
-    background: #00aaff;
-
-    color: #031019;
-
-    text-decoration: none;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
-
-    box-shadow:
-        0 10px 40px rgba(0,170,255,.16);
-}
-
-.download-button:hover {
-    transform: translateY(-2px);
-
-    background: #18b5ff;
-
-    box-shadow:
-        0 14px 45px rgba(0,170,255,.25);
-}
-
-.download-button:active {
-    transform: translateY(0);
-}
-
-.download-icon {
-    font-size: 16px;
-}
-
-/* FILE INFORMATION */
-
-.file-info {
-    margin-top: 17px;
-
-    color: #596272;
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-}
-
-/* INSTRUCTIONS */
-
-.instructions {
-    display: none;
-
-    width: min(760px, 92vw);
-}
-
-.instructions.show {
-    display: block;
-
-    animation:
-        reveal .55s ease forwards;
-}
-
-.download-panel.hide {
-    display: none;
-}
-
-/* REVEAL ANIMATION */
-
-@keyframes reveal {
-
-    from {
-        opacity: 0;
-        transform: translateY(12px);
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
     }
 
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07090d;
+      color: #ffffff;
+      position: relative;
+    }
 
-/* INSTRUCTION HEADING */
+    /* Background grid */
 
-.instruction-heading {
-    margin-bottom: 32px;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
 
-.instruction-heading .eyebrow {
-    margin-bottom: 16px;
-}
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
 
-.instruction-heading h2 {
-    margin: 0;
+      background-size: 42px 42px;
 
-    font-size: clamp(34px, 6vw, 60px);
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+      );
+    }
 
-    letter-spacing: -3px;
+    /* Blue atmospheric glow */
 
-    line-height: .95;
-}
+    body::after {
+      content: "";
+      position: fixed;
+      width: 700px;
+      height: 700px;
+      top: -300px;
+      right: -200px;
+      border-radius: 50%;
+      pointer-events: none;
 
-.instruction-heading h2 span {
-    color: #00aaff;
-}
+      background: rgba(0, 170, 255, 0.08);
+      filter: blur(100px);
+    }
 
-/* STEPS */
+    .green-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      bottom: -280px;
+      left: -180px;
+      border-radius: 50%;
 
-.steps {
-    display: grid;
+      background: rgba(0, 229, 154, 0.045);
+      filter: blur(100px);
 
-    grid-template-columns:
-        repeat(3, 1fr);
+      pointer-events: none;
+    }
 
-    gap: 13px;
-
-    margin-bottom: 28px;
-}
-
-.step {
-    text-align: left;
-
-    padding: 20px;
-
-    border:
-        1px solid rgba(255,255,255,.07);
-
-    background:
-        rgba(255,255,255,.025);
-
-    border-radius: 10px;
-}
-
-.step-number {
-    color: #00aaff;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 13px;
-}
-
-.step h3 {
-    margin: 0 0 8px;
-
-    font-size: 14px;
-}
-
-.step p {
-    margin: 0;
-
-    color: #747e8d;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-}
-
-.step strong {
-    color: #dce3eb;
-}
-
-/* NOTE */
-
-.note {
-    padding: 15px 18px;
-
-    border-left:
-        2px solid #00aaff;
-
-    background:
-        rgba(0,170,255,.035);
-
-    color: #737d8c;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-
-    text-align: left;
-}
-
-.note strong {
-    color: #dce3eb;
-}
-
-/* MOBILE */
-
-@media (max-width: 650px) {
+    /* Navigation */
 
     nav {
-        height: 70px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
 
-        padding: 0 7vw;
+      padding: 32px 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      z-index: 10;
+    }
+
+    .logo {
+      color: white;
+      text-decoration: none;
+
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+
+      transition: opacity 0.25s ease;
+    }
+
+    .logo:hover {
+      opacity: 0.7;
     }
 
     .status {
-        display: none;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      color: rgba(255,255,255,0.52);
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+
+      background: #00e59a;
+
+      box-shadow:
+        0 0 10px rgba(0,229,154,0.8),
+        0 0 20px rgba(0,229,154,0.25);
+    }
+
+    /* Main */
 
     main {
-        padding: 20px;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 100px 30px 40px;
+
+      position: relative;
+      z-index: 2;
     }
 
-    h1 {
-        letter-spacing: -3px;
+    .screen {
+      width: min(920px, 100%);
+      text-align: center;
+
+      animation: fadeIn 0.8s ease both;
+    }
+
+    /* Download screen */
+
+    #downloadScreen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+
+      color: #00aaff;
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      margin: 0;
+
+      font-size: clamp(64px, 10vw, 132px);
+      line-height: 0.82;
+
+      font-weight: 900;
+      letter-spacing: -0.075em;
+    }
+
+    .title .blue {
+      color: #00aaff;
+
+      text-shadow:
+        0 0 25px rgba(0,170,255,0.18),
+        0 0 60px rgba(0,170,255,0.08);
     }
 
     .description {
-        font-size: 13px;
+      max-width: 520px;
 
-        margin:
-            24px auto 28px;
+      margin: 30px auto 0;
+
+      color: rgba(255,255,255,0.52);
+
+      font-size: 15px;
+      line-height: 1.7;
     }
 
-    .steps {
+    /* Diamond */
+
+    .diamond {
+      width: 96px;
+      height: 96px;
+
+      object-fit: contain;
+
+      margin-bottom: 20px;
+
+      opacity: 0.94;
+
+      filter:
+        drop-shadow(0 0 12px rgba(0,170,255,0.18))
+        drop-shadow(0 0 30px rgba(0,170,255,0.08));
+
+      animation:
+        diamondFloat 4s ease-in-out infinite,
+        diamondAppear 1s ease both;
+
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes diamondFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes diamondAppear {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+      }
+
+      to {
+        opacity: 0.94;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Download button */
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 220px;
+
+      margin-top: 34px;
+      padding: 17px 28px;
+
+      border: 1px solid rgba(0,170,255,0.55);
+      border-radius: 7px;
+
+      background: rgba(0,170,255,0.09);
+
+      color: white;
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+
+      box-shadow:
+        0 0 25px rgba(0,170,255,0.08),
+        inset 0 0 20px rgba(0,170,255,0.025);
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .download-button:hover {
+      transform: translateY(-3px);
+
+      background: rgba(0,170,255,0.16);
+
+      border-color: rgba(0,170,255,0.9);
+
+      box-shadow:
+        0 0 35px rgba(0,170,255,0.16),
+        inset 0 0 20px rgba(0,170,255,0.04);
+    }
+
+    .download-button:active {
+      transform: translateY(0);
+    }
+
+    .file-info {
+      margin-top: 16px;
+
+      color: rgba(255,255,255,0.28);
+
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* Instructions */
+
+    #instructionsScreen {
+      display: none;
+    }
+
+    .instructions-title {
+      margin: 0;
+
+      font-size: clamp(54px, 8vw, 100px);
+      line-height: 0.86;
+
+      font-weight: 900;
+      letter-spacing: -0.07em;
+    }
+
+    .instructions-title .blue {
+      color: #00aaff;
+
+      text-shadow:
+        0 0 25px rgba(0,170,255,0.18);
+    }
+
+    .cards {
+      width: 100%;
+
+      margin-top: 38px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+
+      text-align: left;
+    }
+
+    .card {
+      padding: 23px;
+
+      border: 1px solid rgba(255,255,255,0.075);
+      border-radius: 9px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.018)
+        );
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.025);
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+
+      border-color: rgba(0,170,255,0.22);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(0,170,255,0.055),
+          rgba(255,255,255,0.018)
+        );
+    }
+
+    .card-number {
+      color: #00aaff;
+
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
+
+    .card h3 {
+      margin: 13px 0 8px;
+
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .card p {
+      margin: 0;
+
+      color: rgba(255,255,255,0.43);
+
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .note {
+      max-width: 650px;
+
+      margin: 24px auto 0;
+
+      color: rgba(255,255,255,0.3);
+
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    /* Animations */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fadeOut {
+      animation: fadeOut 0.45s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    .fadeInInstructions {
+      animation: fadeIn 0.65s ease both;
+    }
+
+    /* Smaller screens */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 24px;
+      }
+
+      main {
+        padding: 90px 20px 30px;
+      }
+
+      .diamond {
+        width: 96px;
+        height: 96px;
+        margin-bottom: 16px;
+      }
+
+      .description {
+        font-size: 14px;
+        margin-top: 24px;
+      }
+
+      .download-button {
+        margin-top: 28px;
+      }
+
+      .cards {
         grid-template-columns: 1fr;
+        gap: 9px;
 
-        gap: 8px;
+        margin-top: 25px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .card h3 {
+        margin: 7px 0 4px;
+      }
+
+      .note {
+        display: none;
+      }
     }
-
-    .step {
-        padding:
-            14px 16px;
-    }
-
-    .step p {
-        font-size: 10px;
-    }
-
-    .instruction-heading {
-        margin-bottom: 18px;
-    }
-
-    .instruction-heading h2 {
-        letter-spacing: -2px;
-    }
-
-}
-
-/* SHORT SCREENS */
-
-@media (max-height: 650px) {
-
-    nav {
-        height: 65px;
-    }
-
-    .description {
-        margin:
-            18px auto 20px;
-    }
-
-    .steps {
-        margin-bottom: 15px;
-    }
-
-}
-
-</style>
-
+  </style>
 </head>
 
 <body>
 
-<div class="page">
+  <div class="green-glow"></div>
 
-```
-<!-- NAVIGATION -->
-
-<nav>
-
-    <a
-        class="logo"
-        href="https://dhfindustries.online"
-        aria-label="DHF Industries home"
-    >
-        DHF<span class="logo-dot">.</span>
-    </a>
+  <nav>
+    <a href="https://dhfindustries.online" class="logo">DHF.</a>
 
     <div class="status">
-
-        <span class="status-dot"></span>
-
-        Classroom Cloud
-
+      <span class="status-dot"></span>
+      Classroom Cloud
     </div>
+  </nav>
 
-</nav>
-
-
-<!-- MAIN CONTENT -->
-
-<main>
-
+  <main>
 
     <!-- DOWNLOAD SCREEN -->
 
-    <section
-        class="panel download-panel"
-        id="downloadPanel"
-    >
+    <section class="screen" id="downloadScreen">
 
-        <div class="eyebrow">
+      <div class="eyebrow">
+        DHF Industries / Classroom Cloud
+      </div>
 
-            DHF Industries / Classroom Cloud
+      <img
+        class="diamond"
+        src="https://front-office.statics.backmarket.com/fab705d4d81e8bf26593cf9486d2553308c4c732/img/product/funnel/outline-diamond.gif"
+        alt=""
+      >
 
-        </div>
+      <h1 class="title">
+        CLASSROOM<br>
+        <span class="blue">CLOUD.</span>
+      </h1>
 
+      <p class="description">
+        Classroom Cloud V1 is ready to go.
+        Download the Windows application below to begin.
+      </p>
 
-        <h1>
+      <a
+        class="download-button"
+        href="ClassroomCloud-V1.exe"
+        download
+        onclick="showInstructions()"
+      >
+        DOWNLOAD V1
+      </a>
 
-            CLASSROOM
-
-            <span class="accent">
-                CLOUD.
-            </span>
-
-        </h1>
-
-
-        <p class="description">
-
-            Classroom Cloud V1 is ready to go.
-            Download the Windows application below to begin.
-
-        </p>
-
-
-        <a
-            class="download-button"
-            href="ClassroomCloud-V1.exe"
-            download
-            onclick="showInstructions()"
-        >
-
-            <span class="download-icon">
-                ↓
-            </span>
-
-            DOWNLOAD V1
-
-        </a>
-
-
-        <div class="file-info">
-
-            CLASSROOMCLOUD-V1.EXE
-            &nbsp; • &nbsp;
-            WINDOWS
-
-        </div>
+      <div class="file-info">
+        CLASSROOMCLOUD-V1.EXE • WINDOWS
+      </div>
 
     </section>
 
 
     <!-- INSTRUCTIONS SCREEN -->
 
-    <section
-        class="instructions"
-        id="instructionsPanel"
-    >
+    <section class="screen" id="instructionsScreen">
 
-        <div class="instruction-heading">
+      <div class="eyebrow">
+        Classroom Cloud / V1
+      </div>
 
-            <div class="eyebrow">
+      <h2 class="instructions-title">
+        YOU'RE<br>
+        <span class="blue">READY.</span>
+      </h2>
 
-                Classroom Cloud / V1
+      <div class="cards">
 
-            </div>
+        <div class="card">
+          <div class="card-number">01 / DOWNLOAD</div>
 
+          <h3>Open the file</h3>
 
-            <h2>
-
-                YOU'RE
-
-                <span>
-                    READY.
-                </span>
-
-            </h2>
-
+          <p>
+            Find ClassroomCloud-V1.exe in your Downloads folder
+            and open it.
+          </p>
         </div>
 
 
-        <div class="steps">
+        <div class="card">
+          <div class="card-number">02 / LAUNCH</div>
 
+          <h3>Start the application</h3>
 
-            <!-- STEP 1 -->
-
-            <div class="step">
-
-                <div class="step-number">
-
-                    01 / DOWNLOAD
-
-                </div>
-
-
-                <h3>
-
-                    Open the file
-
-                </h3>
-
-
-                <p>
-
-                    Find
-                    ClassroomCloud-V1.exe
-                    in your Downloads folder
-                    and open it.
-
-                </p>
-
-            </div>
-
-
-            <!-- STEP 2 -->
-
-            <div class="step">
-
-                <div class="step-number">
-
-                    02 / LAUNCH
-
-                </div>
-
-
-                <h3>
-
-                    Start the application
-
-                </h3>
-
-
-                <p>
-
-                    Follow any Windows prompts
-                    and allow the application to open.
-
-                </p>
-
-            </div>
-
-
-            <!-- STEP 3 -->
-
-            <div class="step">
-
-                <div class="step-number">
-
-                    03 / CONNECT
-
-                </div>
-
-
-                <h3>
-
-                    Server Connection
-
-                </h3>
-
-
-                <p>
-
-                    Once Classroom Cloud opens,
-                    click
-                    <strong>Server Connection</strong>
-                    to begin.
-
-                </p>
-
-            </div>
-
+          <p>
+            Follow any Windows prompts and allow the application
+            to open.
+          </p>
         </div>
 
 
-        <div class="note">
+        <div class="card">
+          <div class="card-number">03 / CONNECT</div>
 
-            <strong>
-                Once connected:
-            </strong>
+          <h3>Server Connection</h3>
 
-            keep an eye on the log at the bottom
-            of the application. It will show you
-            what Classroom Cloud is doing as the
-            connection progresses.
-
+          <p>
+            Once Classroom Cloud opens, click Server Connection
+            to begin.
+          </p>
         </div>
+
+      </div>
+
+      <div class="note">
+        Once connected: keep an eye on the log at the bottom of
+        the application. It will show you what Classroom Cloud
+        is doing as the connection progresses.
+      </div>
 
     </section>
 
-</main>
-```
-
-</div>
-
-<script>
-
-function showInstructions() {
-
-    setTimeout(function() {
-
-        document
-            .getElementById("downloadPanel")
-            .classList.add("hide");
+  </main>
 
 
-        document
-            .getElementById("instructionsPanel")
-            .classList.add("show");
+  <script>
+    function showInstructions() {
 
-    }, 700);
+      const downloadScreen =
+        document.getElementById("downloadScreen");
 
-}
+      const instructionsScreen =
+        document.getElementById("instructionsScreen");
 
-</script>
+      downloadScreen.classList.add("fadeOut");
+
+      setTimeout(() => {
+
+        downloadScreen.style.display = "none";
+
+        instructionsScreen.style.display = "block";
+
+        instructionsScreen.classList.add("fadeInInstructions");
+
+      }, 500);
+    }
+  </script>
 
 </body>
 </html>
+```
