@@ -157,7 +157,10 @@ h1 .accent {
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 1.5px;
-    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
     box-shadow: 0 10px 40px rgba(0,170,255,.16);
 }
 
@@ -165,6 +168,10 @@ h1 .accent {
     transform: translateY(-2px);
     background: #18b5ff;
     box-shadow: 0 14px 45px rgba(0,170,255,.25);
+}
+
+.download-button:active {
+    transform: translateY(0);
 }
 
 .download-icon {
@@ -178,30 +185,8 @@ h1 .accent {
     letter-spacing: 1px;
 }
 
-.quick-links {
-    margin-top: 28px;
-    display: flex;
-    justify-content: center;
-    gap: 13px;
-    color: #505968;
-    font-size: 10px;
-}
 
-.quick-links a {
-    color: #667080;
-    text-decoration: none;
-    transition: color .2s ease;
-}
-
-.quick-links a:hover {
-    color: #00aaff;
-}
-
-.separator {
-    color: #00aaff;
-}
-
-/* Instructions */
+/* INSTRUCTIONS */
 
 .instructions {
     display: none;
@@ -222,6 +207,7 @@ h1 .accent {
         opacity: 0;
         transform: translateY(12px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -282,6 +268,10 @@ h1 .accent {
     line-height: 1.6;
 }
 
+.step strong {
+    color: #dce3eb;
+}
+
 .note {
     padding: 15px 18px;
     border-left: 2px solid #00aaff;
@@ -296,18 +286,8 @@ h1 .accent {
     color: #dce3eb;
 }
 
-footer {
-    height: 65px;
-    padding: 0 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444d5b;
-    font-size: 10px;
-    letter-spacing: 1.2px;
-}
-
 @media (max-width: 650px) {
+
     nav {
         height: 70px;
         padding: 0 7vw;
@@ -350,23 +330,16 @@ footer {
     .instruction-heading h2 {
         letter-spacing: -2px;
     }
-
-    footer {
-        height: 48px;
-    }
 }
 
 @media (max-height: 650px) {
+
     nav {
         height: 65px;
     }
 
     .description {
         margin: 18px auto 20px;
-    }
-
-    footer {
-        height: 45px;
     }
 
     .steps {
@@ -383,7 +356,12 @@ footer {
 
 ```
 <nav>
-    <a class="logo" href="https://dhfindustries.online" aria-label="DHF Industries home">
+
+    <a
+        class="logo"
+        href="https://dhfindustries.online"
+        aria-label="DHF Industries home"
+    >
         DHF<span class="logo-dot">.</span>
     </a>
 
@@ -391,14 +369,19 @@ footer {
         <span class="status-dot"></span>
         Classroom Cloud
     </div>
+
 </nav>
+
 
 <main>
 
     <!-- DOWNLOAD SCREEN -->
+
     <section class="panel download-panel" id="downloadPanel">
 
-        <div class="eyebrow">DHF Industries / Classroom Cloud</div>
+        <div class="eyebrow">
+            DHF Industries / Classroom Cloud
+        </div>
 
         <h1>
             CLASSROOM
@@ -424,71 +407,97 @@ footer {
             CLASSROOMCLOUD-V1.EXE &nbsp; • &nbsp; WINDOWS
         </div>
 
-        <div class="quick-links">
-            <a href="https://dhfindustries.online">DHF Industries</a>
-            <span class="separator">•</span>
-            <a href="https://conceptx.dhfindustries.online">Concept X</a>
-        </div>
-
     </section>
 
 
     <!-- INSTRUCTIONS SCREEN -->
+
     <section class="instructions" id="instructionsPanel">
 
         <div class="instruction-heading">
-            <div class="eyebrow">Classroom Cloud / V1</div>
+
+            <div class="eyebrow">
+                Classroom Cloud / V1
+            </div>
 
             <h2>
                 YOU'RE
                 <span>READY.</span>
             </h2>
+
         </div>
+
 
         <div class="steps">
 
             <div class="step">
-                <div class="step-number">01 / DOWNLOAD</div>
-                <h3>Open the file</h3>
+
+                <div class="step-number">
+                    01 / DOWNLOAD
+                </div>
+
+                <h3>
+                    Open the file
+                </h3>
+
                 <p>
-                    Find ClassroomCloud-V1.exe in your Downloads folder
-                    and open it.
+                    Find ClassroomCloud-V1.exe in your Downloads
+                    folder and open it.
                 </p>
+
             </div>
 
-            <div class="step">
-                <div class="step-number">02 / LAUNCH</div>
-                <h3>Start the application</h3>
-                <p>
-                    If Windows asks for permission to run the application,
-                    review the prompt and continue if you trust the file.
-                </p>
-            </div>
 
             <div class="step">
-                <div class="step-number">03 / SCAN</div>
-                <h3>Click Start Scanning</h3>
+
+                <div class="step-number">
+                    02 / LAUNCH
+                </div>
+
+                <h3>
+                    Start the application
+                </h3>
+
+                <p>
+                    Follow any Windows prompts and allow the
+                    application to open.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03 / SCAN
+                </div>
+
+                <h3>
+                    Click Start Scanning
+                </h3>
+
                 <p>
                     Once Classroom Cloud opens, click
                     <strong>Start Scanning</strong> to begin.
                 </p>
+
             </div>
 
         </div>
 
+
         <div class="note">
+
             <strong>Once scanning starts:</strong>
             keep an eye on the log at the bottom of the application.
-            It will show you what Classroom Cloud is doing as the scan progresses.
+            It will show you what Classroom Cloud is doing as the
+            scan progresses.
+
         </div>
 
     </section>
 
 </main>
-
-<footer>
-    DHF INDUSTRIES &nbsp; • &nbsp; CLASSROOM CLOUD V1
-</footer>
 ```
 
 </div>
